@@ -1,75 +1,37 @@
-;; Duijf's emacs config based on Pallet and Cask
+;;; init.el --- Duijf's emacs configuration
 
+;; Copyright (C) 2014 Laurens Duijvesteijn <l.duijvesteijn@gmail.com>
+
+;; Author: Laurens Duijvesteijn
+;; URL: github.com/duijf/.emacs.d/blob/master/init.el
+
+;;; Commentary:
+
+;; Loads duijf's Emacs configuration. Makes use of the Pallet interface
+;; for the Cask package manager. Adds subconfiguration to load path
+;; and loads it into Emacs.
+
+;; This file is *NOT* part of GNU Emacs.
+
+;;; Code:
+
+;; Initialize Cask package manager
 (require 'cask "/usr/local/Cellar/cask/0.7.2/cask.el")
 (cask-initialize)
 (require 'pallet)
 
-;;
-;; Remove a lot of crap, most of the configuration from:
-;; Emacs, naked (http://bzg.fr/emacs-strip-tease.html)
-;;
+;; Define configuration directories
+(defvar duijf-dir (file-name-directory load-file-name)
+  "The .emacs.d directory.")
+(defvar duijf-core-dir (expand-file-name "core" duijf-dir)
+  "The core configuration directory.")
 
-;; Prevent the cursor from blinking
-(blink-cursor-mode 0)
+;; Add configuration directories to load path
+(add-to-list 'load-path duijf-core-dir)
 
-;; Remove initial scratch message
-(setq initial-scratch-message "")
+;; Require core configuration
+(require 'duijf-editor)
+(require 'duijf-ui)
+(require 'duijf-evil)
 
-;; Don't show the statup screen
-(setq inhibit-startup-message t)
-
-;; Don't make sounds
-(setq ring-bell-function 'ignore)
-
-;; Start in full-screen
-(toggle-frame-fullscreen)
-
-;; Don't show the scroll bars
-(scroll-bar-mode 0)
-
-;; Don't show the tool bar
-(tool-bar-mode 0)
-
-(setq custom-file "~/.emacs.d/custom.el")
-(load custom-file 'noerror)
-
-;;
-;; Evil mode
-;;
-
-(require 'evil)
-(evil-mode 1)
-
-;; Get out of a minibuffer.
-(defun minibuffer-keyboard-quit ()
-  "Get out of a minibuffer."
-  (interactive)
-  (if (and delete-selection-mode transient-mark-mode mark-active)
-      (setq deactivate-mark t)
-    (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
-    (abort-recursive-edit)))
-
-;; ESC gets you out of pretty much everything
-(define-key evil-normal-state-map [escape] 'keyboard-quit)
-(define-key evil-visual-state-map [escape] 'keyboard-quit)
-(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
-(global-set-key [escape] 'evil-exit-emacs-state)
-
-;;
-;; UI
-;;
-
-;; Load solarized
-(load-theme 'solarized-dark)
-
-;; Color Evil cursors
-(setq evil-emacs-state-cursor '("red" hbar))
-(setq evil-normal-state-cursor '("green" box))
-(setq evil-visual-state-cursor '("orange" box))
-(setq evil-insert-state-cursor '("red" hbar))
-(setq evil-replace-state-cursor '("red" hbar))
-(setq evil-operator-state-cursor '("red" hollow))
+;;; init.el ends here
