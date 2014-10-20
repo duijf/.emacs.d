@@ -60,6 +60,9 @@
 ;; UI
 ;;
 
+;; Load solarized
+(load-theme 'solarized-dark)
+
 ;; Color Evil cursors
 (setq evil-emacs-state-cursor '("red" hbar))
 (setq evil-normal-state-cursor '("green" box))
