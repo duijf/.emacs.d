@@ -30,6 +30,9 @@
 ;; Don't show the tool bar
 (tool-bar-mode 0)
 
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file 'noerror)
+
 ;;
 ;; Evil mode
 ;;
