@@ -20,17 +20,13 @@
 (cask-initialize)
 (require 'pallet)
 
-;; Set the Emacs PATH
-(defun set-exec-path-from-shell-PATH ()
-  "Sets the exec-path to the same value used by the user shell"
-  (let ((path-from-shell
-         (replace-regexp-in-string
-          "[[:space:]\n]*$" ""
-          (shell-command-to-string "$SHELL -l -c 'echo $PATH'"))))
-    (setenv "PATH" path-from-shell)
-    (setq exec-path (split-string path-from-shell path-separator))))
+;; Start emacs server
+(server-start)
 
-(set-exec-path-from-shell-PATH)
+;; Get the same PATH as a shell
+(require 'exec-path-from-shell)
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 
 ;; Define configuration directories
 (defvar duijf-dir (file-name-directory load-file-name)
