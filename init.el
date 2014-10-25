@@ -46,7 +46,6 @@
 
 ;; Require core configuration
 (require 'duijf-editor)
-(require 'duijf-ui)
 (require 'duijf-evil)
 
 ;; Require language configuration

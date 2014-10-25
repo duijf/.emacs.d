@@ -8,7 +8,7 @@
 ;;; Commentary:
 
 ;; Removes unneccessary UI elements, files, and sets other sensible
-;; editor settings.
+;; editor settings. Also loads a nice theme.
 
 ;; This file is *NOT* part of GNU Emacs.
 
@@ -41,6 +41,11 @@
 
 ;; Require newline at end of file
 (setq require-final-newline t)
+
+;; Load tomorrow-night color theme
+(require 'color-theme)
+(require 'color-theme-solarized)
+(load-theme 'solarized-light)
 
 (provide 'duijf-editor)
 ;;; duijf-editor.el ends here
