@@ -13,6 +13,19 @@
 
 ;;; Code:
 
+;; We need to load and configure evil-leader before evil itself in
+;; order to have it available in initial buffers like *scratch* and
+;; *Messages*
+(require 'evil-leader)
+(global-evil-leader-mode)
+
+;; Evil leader bindings and configuration
+(evil-leader/set-leader ",")
+
+(evil-leader/set-key
+  "e" 'eval-buffer)
+
+;; Load evil itself
 (require 'evil)
 (evil-mode 1)
 
