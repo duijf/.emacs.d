@@ -52,5 +52,7 @@
 (sml/setup)
 (sml/apply-theme 'light)
 
+(set-fringe-mode 0)
+
 (provide 'duijf-editor)
 ;;; duijf-editor.el ends here
