@@ -43,6 +43,7 @@
 ;; Require core configuration
 (require 'duijf-editor)
 (require 'duijf-evil)
+(require 'duijf-keybindings)
 
 ;; Require language configuration
 (require 'duijf-haskell)
