@@ -47,5 +47,10 @@
 (require 'color-theme-solarized)
 (load-theme 'solarized-light)
 
+;; Load smart mode line
+(require 'smart-mode-line)
+(sml/setup)
+(sml/apply-theme 'light)
+
 (provide 'duijf-editor)
 ;;; duijf-editor.el ends here

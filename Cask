@@ -8,3 +8,4 @@
 (depends-on "haskell-mode")
 (depends-on "pallet")
 (depends-on "shm")
+(depends-on "smart-mode-line")
