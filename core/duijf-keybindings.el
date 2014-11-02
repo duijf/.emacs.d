@@ -17,5 +17,9 @@
 (setq mac-option-modifier 'super)
 (setq mac-command-modifier 'meta)
 
+;; Set copy paste to work like expected with alt and cmd switched
+(global-set-key (kbd "M-c") 'clipboard-kill-ring-save)
+(global-set-key (kbd "M-v") 'clipboard-yank)
+
 (provide 'duijf-keybindings)
 ;;; duijf-keybindings.el ends here
