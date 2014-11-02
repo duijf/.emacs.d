@@ -26,6 +26,12 @@
 ;; Don't make sounds
 (setq ring-bell-function 'ignore)
 
+;; Store all backup and autosave files in the tmp dir
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+
 ;; Start in full-screen
 (toggle-frame-fullscreen)
 
